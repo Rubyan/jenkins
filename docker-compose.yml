@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  jenkins:
+    build: ./jenkins
+    #image: jenkins/jenkins:lts
+    image: jenkins-custom
+    ports:
+      #- "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    environment:
+      - JAVA_OPTS=-Dhudson.footerURL=http://mycompany.com
+  proxy:
+    image: nginx:1.13.9
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "${PWD}/nginx.conf:/etc/nginx/nginx.conf"
+      - /etc/letsencrypt:/etc/letsencrypt
+volumes:
+  jenkins_home:
