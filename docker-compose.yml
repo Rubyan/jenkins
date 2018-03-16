@@ -26,6 +26,12 @@ services:
 
   dockerhostname:
     image: rubyan/docker-hostname:latest
+  
+  tomcat:
+    build: ./tomcat
+    image: tomcat-custom
+    ports:
+      - "8090:8080"
 
 volumes:
   jenkins_home:
