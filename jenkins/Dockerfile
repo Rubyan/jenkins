@@ -2,6 +2,8 @@ FROM jenkins/jenkins:lts
 
 USER root
 
+RUN apt update && apt-get install zip
+
 # Setup Maven
 ENV MAVEN_VERSION 3.5.3
 
